@@ -45,7 +45,7 @@ import androidx.navigation.NavController
 @Composable
 fun PaymentScreen(navController: NavController) {
     val isCheckboxChecked = remember { mutableStateOf(true) }
-    val isSelected = remember { mutableStateOf(true) }
+    val selectedMethod = remember { mutableStateOf("Credit Card")}
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -150,7 +150,10 @@ fun PaymentScreen(navController: NavController) {
             imageResId = R.drawable.mastercard, // Replace with your resource
             cardType = "Credit card",
             cardNumber = "5105 **** **** 0505",
-            isSelected = isSelected.value
+            isSelected = selectedMethod.value == "Credit Card",
+            onClick = {
+                selectedMethod.value = "Credit Card"
+            }
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -159,7 +162,10 @@ fun PaymentScreen(navController: NavController) {
             imageResId = R.drawable.visa, // Replace with your resource
             cardType = "Debit card",
             cardNumber = "3566 **** **** 0505",
-            isSelected = !isSelected.value
+            isSelected = selectedMethod.value == "Debit Card",
+            onClick = {
+                selectedMethod.value = "Debit Card"
+            }
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -268,7 +274,8 @@ fun PaymentMethodCard(
     imageResId: Int,
     cardType: String,
     cardNumber: String,
-    isSelected: Boolean
+    isSelected: Boolean,
+    onClick: () -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -278,7 +285,10 @@ fun PaymentMethodCard(
         modifier = Modifier
             .fillMaxWidth()
             .height(80.dp)
-            .shadow(if (isSelected) 8.dp else 4.dp, shape = RoundedCornerShape(16.dp))
+            .shadow(if (isSelected) 8.dp else 4.dp, shape = RoundedCornerShape(16.dp)),
+        onClick = {
+            onClick()
+        }
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -305,7 +315,7 @@ fun PaymentMethodCard(
             RadioButton(
                 selected = isSelected,
                 onClick = {
-                    // Handle radio button selection
+                    onClick()
                 },
                 colors = RadioButtonDefaults.colors(selectedColor = Color.White)
             )

@@ -70,64 +70,61 @@ fun HomeScreen(navController: NavController) {
     Scaffold(
         bottomBar = {
             BottomAppBar(
-                cutoutShape = RoundedCornerShape(50),
-                content = {
-                    BottomNavigation {
-                        BottomNavigationItem(
-                            selected = true,
-                            onClick = {},
-                            icon = {
-                                Icon(
-                                    Icons.Default.Home,
-                                    contentDescription = "Home",
-                                    tint = Color.White
-                                )
-                            },
-                            label = { Text("Home") },
-                            alwaysShowLabel = false
-                        )
-                        BottomNavigationItem(
-                            selected = true,
-                            onClick = {},
-                            icon = {
-                                Icon(
-                                    Icons.Default.Person,
-                                    contentDescription = "Person",
-                                    tint = Color.White
-                                )
-                            },
-                            label = { Text("Person") },
-                            alwaysShowLabel = false
-                        )
-                        BottomNavigationItem(
-                            selected = true,
-                            onClick = {},
-                            icon = {
-                                Icon(
-                                    painter = painterResource(R.drawable.comment),
-                                    contentDescription = "Comment",
-                                    tint = Color.White
-                                )
-                            },
-                            label = { Text("Comment") },
-                            alwaysShowLabel = false
-                        )
-                        BottomNavigationItem(
-                            selected = true,
-                            onClick = {},
-                            icon = {
-                                Icon(
-                                    Icons.Default.Favorite,
-                                    contentDescription = "Favorite",
-                                    tint = Color.White
-                                )
-                            },
-                            label = { Text("Favorite") },
-                            alwaysShowLabel = false
+                backgroundColor = Color(0xFFEF2A39),
+                elevation = 8.dp,
+                cutoutShape = CircleShape
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    // Home Icon
+                    IconButton(
+                        onClick = { /* TODO: Navigate to Home */ },
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_home), // Replace with your home icon
+                            contentDescription = "Home",
+                            tint = Color.White
                         )
                     }
-                },
-            )
+
+                    // Profile Icon
+                    IconButton(onClick = { /* TODO: Navigate to Profile */ },
+                        modifier = Modifier.weight(1f)) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_profile), // Replace with your profile icon
+                            contentDescription = "Profile",
+                            tint = Color.White
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.weight(1f)) // Space for FAB
+
+                    // Orders Icon
+                    IconButton(onClick = { /* TODO: Navigate to Orders */ },
+                        modifier = Modifier.weight(1f)) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_comment), // Replace with your orders icon
+                            contentDescription = "Orders",
+                            tint = Color.White
+                        )
+                    }
+
+                    // Favorites Icon
+                    IconButton(onClick = { /* TODO: Navigate to Favorites */ },
+                        modifier = Modifier.weight(1f)) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_favorite), // Replace with your favorite icon
+                            contentDescription = "Favorites",
+                            tint = Color.White
+                        )
+                    }
+                }
+            }
         },
         floatingActionButton = {
             FloatingActionButton(
@@ -135,18 +132,17 @@ fun HomeScreen(navController: NavController) {
                     navController.navigate("order_screen")
                 },
                 containerColor = Color(0xFFEF2A39),
+                contentColor = Color.White,
                 shape = CircleShape,
-                elevation = FloatingActionButtonDefaults.elevation(
-                    defaultElevation = 6.dp
-                ),
+                elevation = FloatingActionButtonDefaults.elevation(8.dp),
                 modifier = Modifier
                     .size(64.dp)
                     .shadow(elevation = 6.dp, shape = CircleShape)
             ) {
                 Icon(
-                    Icons.Default.Add,
+                    painter = painterResource(id = R.drawable.ic_add), // Replace with your add icon
                     contentDescription = "Add",
-                    tint = Color.White
+                    modifier = Modifier.size(32.dp)
                 )
             }
         },
