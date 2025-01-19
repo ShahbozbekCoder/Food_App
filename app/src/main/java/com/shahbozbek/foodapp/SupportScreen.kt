@@ -92,7 +92,7 @@ fun CustomerSupportUI(navController: NavController) {
             }
         }
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         // Chat Messages
         LazyColumn(
@@ -144,8 +144,6 @@ fun ChatMessageItem(message: ChatMessage) {
                 tint = Color.White
             )
             Spacer(modifier = Modifier.width(8.dp))
-        } else {
-            Spacer(modifier = Modifier.width(32.dp))
         }
 
         Card(
@@ -186,8 +184,6 @@ fun ChatMessageItem(message: ChatMessage) {
                     .border(1.dp, Color(0xFFEF2A39), CircleShape),
                 contentScale = ContentScale.Crop,
             )
-        } else {
-            Spacer(modifier = Modifier.width(32.dp))
         }
     }
 }
